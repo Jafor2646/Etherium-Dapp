@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container my-5">
+        <!-- Header Section -->
+        <div class="text-center mb-4">
+            <h1 class="fw-bold">Admin Dashboard</h1>
+            <p class="text-muted">Manage patient details and track Covid updates</p>
+        </div>
+
+        <!-- Patient Table -->
+        <div class="card shadow p-4 mb-4">
+            <h3 class="mb-3">Patient Information</h3>
+            <table id="patientTable" class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Address</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Vaccine Status</th>
+                        <th>District</th>
+                        <th>Symptoms</th>
+                        <th>Dead</th>
+                        <th>Has Info</th>
+                        <th>Action</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Update Form -->
+        <div id="updateForm" class="card shadow p-4" style="display: none;">
+            <h3 class="mb-4">Update Patient Information for <span id="patientAddressForHeader"></span></h3>
+            <form id="updatePatientForm">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="updateName" class="form-label">Name</label>
+                        <input type="text" id="updateName" class="form-control" placeholder="Enter name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="updateAge" class="form-label">Age</label>
+                        <input type="number" id="updateAge" class="form-control" placeholder="Enter age">
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <div class="col-md-6">
+                        <label for="updateGender" class="form-label">Gender</label>
+                        <select id="updateGender" class="form-select">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="updateVaccineStatus" class="form-label">Vaccine Status</label>
+                        <select id="updateVaccineStatus" class="form-select">
+                            <option value="0">Not Vaccinated</option>
+                            <option value="1">One Dose</option>
+                            <option value="2">Two Dose</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <div class="col-md-6">
+                        <label for="updateDistrict" class="form-label">District</label>
+                        <input type="text" id="updateDistrict" class="form-control" placeholder="Enter district">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="updateSymptoms" class="form-label">Symptoms</label>
+                        <input type="text" id="updateSymptoms" class="form-control" placeholder="Enter symptoms">
+                    </div>
+                </div>
+                <div class="form-check form-switch mt-3">
+                    <input class="form-check-input" type="checkbox" id="updateDead">
+                    <label class="form-check-label" for="updateDead">Dead</label>
+                </div>
+                <div class="form-check form-switch mt-3">
+                    <input class="form-check-input" type="checkbox" id="updateHasInfo">
+                    <label class="form-check-label" for="updateHasInfo">Has Info</label>
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Save</button>
+            </form>
+        </div>
+
+        <!-- Covid Updates -->
+        <div class="card shadow p-4 mt-4">
+            <h3 class="mb-3">Covid Updates</h3>
+            <div id="averageDeathRate" class="mb-3"></div>
+            <div id="districtWithHighest" class="mb-3"></div>
+            <div id="agePercentages"></div>
+        </div>
+
+        <!-- Logout Button -->
+        <div class="text-center mt-4">
+            <button class="btn btn-danger" onclick="App.logout()">Logout</button>
+        </div>
+    </div>
+</body>
+</html>
